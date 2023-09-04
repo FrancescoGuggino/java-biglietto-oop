@@ -55,16 +55,21 @@ public class Biglietto {
     public BigDecimal calcolaPrezzo() {
         BigDecimal kmDecimal = new BigDecimal(km);
         BigDecimal prezzoBase = kmDecimal.multiply(chilometraggio);
-        if (eta >= 65){
+
+        if (eta >= 65) {
             BigDecimal sconto = prezzoBase.multiply(scontoSenior);
             BigDecimal prezzoScontato = prezzoBase.subtract(sconto);
-        } else if (eta < 18){
+            return prezzoScontato;
+        } else if (eta < 18) {
             BigDecimal sconto = prezzoBase.multiply(scontoMin);
             BigDecimal prezzoScontato = prezzoBase.subtract(sconto);
-        } else return prezzoBase;
+            return prezzoScontato;
+        } else {
+            return prezzoBase;
+
+        }
 
     }
-
     @Override
     public String toString() {
         return "Biglietto{" +
